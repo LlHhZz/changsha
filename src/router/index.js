@@ -8,6 +8,7 @@ import DeclarationResultsView from '../views/DeclarationResultsView.vue'
 import DeclarationAnalyseView from '../views/DeclarationAnalyseView.vue'
 import InformationManagementView from '../views/InformationManagementView.vue'
 import UserAuthManagementView from '../views/UserAuthManagementView.vue'
+import UserDeclarationManagementView from '../views/UserDeclarationManagementView.vue'
 import SettingsView from '../views/SettingsView.vue'
 
 import NotFoundView from '../views/NotFoundView.vue'
@@ -47,6 +48,11 @@ const routes = [
     path: '/userAuthManagement',
     name: 'userAuthManagement',
     component: UserAuthManagementView
+  },
+  {
+    path: '/userDeclarationManagement',
+    name: 'userDeclarationManagement',
+    component: UserDeclarationManagementView
   },
   {
     path: '/declarationAnalyse',

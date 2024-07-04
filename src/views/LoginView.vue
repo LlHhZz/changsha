@@ -121,6 +121,9 @@ export default {
           },
           success: resp => {
               if(resp.result === 'success') {
+                // 记录username
+                localStorage.setItem('username', this.username); 
+
                 var toastEl = document.getElementById('liveToast');
                 var toast = new Toast(toastEl, {
                   autohide: true,
@@ -164,6 +167,9 @@ export default {
           },
           success: resp => {
               if(resp.result === 'success') {
+                // 记录username
+                localStorage.setItem('username', this.username); 
+
                 var toastEl = document.getElementById('liveToast');
                 var toast = new Toast(toastEl, {
                   autohide: true,

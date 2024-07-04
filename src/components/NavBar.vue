@@ -8,12 +8,14 @@
     <router-link class="nav-link" style="color: white;" :to="{name: 'declarationResults', params: {}}">出清结果</router-link>
     <span>&nbsp;&nbsp;&nbsp;</span>
     <router-link class="nav-link" style="color: white; margin-right: 20%;" :to="{name: 'declarationAnalyse', params: {}}">结果评估</router-link>
-    <router-link class="navbar-brand" :to="{name: 'home'}" style="color: white; margin-right: 13%;">电动汽车效益评估功能软件模块</router-link>
+    <router-link class="navbar-brand" :to="{name: 'home'}" style="color: white; margin-right: 5%;">电动汽车效益评估功能软件模块</router-link>
     <router-link class="nav-link" style="color: white;" :to="{name: 'declarationResults', params: {}}">长沙市出清结果</router-link>
     <span>&nbsp;&nbsp;&nbsp;</span>
     <router-link class="nav-link" style="color: white;" :to="{name: 'declarationAnalyse', params: {}}">长沙市结果评估</router-link>
     <span>&nbsp;&nbsp;&nbsp;</span>
     <router-link class="nav-link" style="color: white;" :to="{name: 'userAuthManagement', params: {}}">用户认证管理</router-link>
+    <span>&nbsp;&nbsp;&nbsp;</span>
+    <router-link class="nav-link" style="color: white;" :to="{name: 'userDeclarationManagement', params: {}}">用户申报管理</router-link>
     <!--
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
