@@ -9,10 +9,12 @@ export default{
     mounted() {
         let myChart = echarts.init(this.$refs.myChart)
         // 设置数据
-        let xData = ['00:00', '02:00', '04:00', '08:00', '10:00', '12:00','14:00', '16:00', '18:00', '20:00', '22:00', '24:00']
-        let electricityPrice = [150, 125, 100, 110, 135, 125, 150, 125, 100, 110, 135, 125]
-        let mileagePrice = [165, 110, 95, 140, 180, 150, 110, 80, 70, 60, 150, 105]
-        let capacityPrice = [185, 120, 75, 160, 200, 140, 90, 60, 95, 86, 156, 125]
+        let xData = ['00:00', '01:00', '02:00', '03:00' , '04:00', '05:00' , '06:00', '07:00' , '08:00', '09:00', '10:00', '11:00' , '12:00', '13:00' , '14:00', '15:00' , '16:00', '17:00' , '18:00', '19:00' , '20:00', '21:00' , '22:00', '23:00' , '24:00']
+        // let electricityPrice = [150, 125, 100, 110, 135, 125, 150, 125, 100, 110, 135, 125]
+        // let mileagePrice = [165, 110, 95, 140, 180, 150, 110, 80, 70, 60, 150, 105]
+        // let capacityPrice = [185, 120, 75, 160, 200, 140, 90, 60, 95, 86, 156, 125]
+        let FMPrice = [39.99999999,	39.99999999, 39.99999998, 39.99999998, 39.99999997, 39.99999995, 39.99999995, 39.99999991, 34.54546507, 39.99999891, 34.54545464, 34.54545465, 34.54545458, 34.54545458, 34.54545456, 34.54545457, 34.54545457, 34.54545456, 34.54545456, 34.54545456, 34.54545456, 34.54545456, 34.54545458, 34.5454546
+]
         // 设置配置项
         let option = {
             xAxis: {
@@ -58,6 +60,7 @@ export default{
                 }
             },
             series: [
+                /*
                 {
                     name: '电价',
                     type: 'line',
@@ -69,11 +72,9 @@ export default{
                     itemStyle: {
                         color: '#48be89'
                     },
-                    /*
-                    areaStyle: {
-                        color: '#daeff0'
-                    }
-                    */
+                    // areaStyle: {
+                    //   color: '#daeff0'
+                    //}
                 },
                 {
                     name: '里程价格',
@@ -86,11 +87,9 @@ export default{
                     itemStyle: {
                         color: '#5470c6'
                     },
-                    /*
-                    areaStyle: {
-                        color: '#c5dfee'
-                    }
-                    */
+                    // areaStyle: {
+                    //    color: '#c5dfee'
+                    //}
                 },
                 {
                     name: '容量价格',
@@ -103,12 +102,26 @@ export default{
                     itemStyle: {
                         color: '#0d6efd'
                     },
-                    /*
-                    areaStyle: {
-                        color: '#c5dfee'
-                    }
-                    */
+                    // areaStyle: {
+                    //    color: '#c5dfee'
+                    //}
                 }
+                */
+               {
+                    name: '电价',
+                    type: 'line',
+                    smooth: true,
+                    data: FMPrice,
+                    lineStyle: {
+                        color: '#48be89'
+                    },
+                    itemStyle: {
+                        color: '#48be89'
+                    },
+                    // areaStyle: {
+                    //   color: '#daeff0'
+                    //}
+                },
             ]
         }
         myChart.setOption(option)

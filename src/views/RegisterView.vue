@@ -1,5 +1,4 @@
 <template>
-
   <div class="loginav">
     <!--
       <div class="video">
@@ -56,7 +55,7 @@
        
       <ul class="logininput">
         <li>
-					<i><svg t="1714971161413" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9740" width="30" height="30"><path d="M815.104 69.632q27.648 25.6 44.032 42.496t25.088 28.672 10.752 19.968 2.048 14.336l0 16.384-151.552 0q-10.24 0-17.92-7.68t-12.8-17.92-7.68-20.992-2.56-16.896l0-126.976 3.072 0q8.192 0 16.896 2.56t19.968 9.728 28.16 20.48 42.496 35.84zM640 129.024q0 20.48 6.144 42.496t19.456 40.96 33.792 31.232 48.128 12.288l149.504 0 0 577.536q0 29.696-11.776 53.248t-31.232 39.936-43.008 25.6-46.08 9.216l-503.808 0q-19.456 0-42.496-11.264t-43.008-29.696-33.28-41.984-13.312-49.152l0-696.32q0-21.504 9.728-44.544t26.624-42.496 38.4-32.256 45.056-12.8l391.168 0 0 128zM704.512 768q26.624 0 45.056-18.944t18.432-45.568-18.432-45.056-45.056-18.432l-384 0q-26.624 0-45.056 18.432t-18.432 45.056 18.432 45.568 45.056 18.944l384 0zM768 448.512q0-26.624-18.432-45.568t-45.056-18.944l-384 0q-26.624 0-45.056 18.944t-18.432 45.568 18.432 45.056 45.056 18.432l384 0q26.624 0 45.056-18.432t18.432-45.056z" p-id="9741" fill="#00b9ee"></path></svg></i>
+					<i><svg t="1720089552319" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4260" width="30" height="30"><path d="M512.33 512c156.739 0 304.3 56.15 442.684 168.452A100 100 0 0 1 992 758.101V948c0 24.3-19.7 44-44 44H76c-24.3 0-44-19.7-44-44V758.185a100 100 0 0 1 37.088-77.73C207.842 568.15 355.589 512 512.33 512zM637 707H387c-41.421 0-75 33.579-75 75 0 41.007 32.91 74.328 73.76 74.99l1.24 0.01h250c41.421 0 75-33.579 75-75s-33.579-75-75-75zM512 32c132.548 0 240 107.452 240 240S644.548 512 512 512 272 404.548 272 272 379.452 32 512 32z" fill="#00b9ee" p-id="4261"></path></svg></i>
 					<input class="forminput" v-model="username" type="text" placeholder="用户名">
 				</li>
 				<li>
@@ -147,7 +146,8 @@ export default {
                 delay: 800
               });
               toast2.show();
-              this.message = resp.result;
+              console.log(resp);
+              this.message = resp.data.result;
             }
         },
         error: resp => {
@@ -182,8 +182,16 @@ export default {
           'Content-Type': 'multipart/form-data',
         },
       }).then(response => {
-        console.log('文件上传成功，响应：', response);
-        // 处理后端返回的数据，例如更新认证状态等
+        console.log(response.data.result);
+        if(response.data.result == 'success') {
+          var toastEl3 = document.getElementById('liveToast');
+            var toast3 = new Toast(toastEl3, {
+              autohide: true,
+              delay: 800
+            });
+            toast3.show();
+            this.message = '认证资料上传成功';
+        }
       }).catch(error => {
         console.error('文件上传失败，错误：', error);
       });

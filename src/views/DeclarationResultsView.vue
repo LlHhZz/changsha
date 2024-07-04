@@ -33,7 +33,7 @@
           <div class="row">
             <div class="col-6">
               <div class="panel">
-                  <h2>电能量中标结果</h2>
+                  <h2>电能量市场出清电价</h2>
                   <div class="chart">
                     <ElectricityAndFMCapacityOnDay></ElectricityAndFMCapacityOnDay>
                   </div>
@@ -43,7 +43,7 @@
               </div>
               <div class="col-6">
                 <div class="panel">
-                  <h2>当日出清价格</h2>
+                  <h2>调频市场出清电价</h2>
                   <div class="chart">
                     <ElectricityAndMileageAndCapacityPricesOnDay></ElectricityAndMileageAndCapacityPricesOnDay>
                   </div>

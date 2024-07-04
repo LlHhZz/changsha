@@ -12,6 +12,7 @@ import UserDeclarationManagementView from '../views/UserDeclarationManagementVie
 import SettingsView from '../views/SettingsView.vue'
 
 import NotFoundView from '../views/NotFoundView.vue'
+import { useStore } from 'vuex';
 
 const routes = [
   {
@@ -22,12 +23,24 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: LoginView
+    component: LoginView,
+    beforeEnter: (to, from, next) => {
+      useStore().dispatch('updateNavBarControl', {
+        position: ''
+      });
+      next();
+    }
   },
   {
     path: '/register',
     name: 'register',
-    component: RegisterView
+    component: RegisterView,
+    beforeEnter: (to, from, next) => {
+      useStore().dispatch('updateNavBarControl', {
+        position: ''
+      });
+      next();
+    }
   },
   {
     path: '/informationDeclaration/:areaName/:areaValue',

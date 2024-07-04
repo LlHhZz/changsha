@@ -96,6 +96,7 @@
 // import ContentBase from '../components/ContentBase';
 import $ from 'jquery';
 import { Toast } from 'bootstrap';
+import { useStore } from 'vuex';
 
 export default {
   data() {
@@ -105,6 +106,11 @@ export default {
       port: '管理端',
       message: '',
     };
+  },
+  setup() {
+    const store = useStore();
+
+    return { store }
   },
   methods: {
     login() {
@@ -119,15 +125,20 @@ export default {
             'username': this.username,
             'password': this.password
           },
-          success: resp => {
+          success: (resp) => {
               if(resp.result === 'success') {
                 // 记录username
                 localStorage.setItem('username', this.username); 
+                // 更改全局变量，控制navBar展示项 
+                this.store.dispatch('updateNavBarControl', {
+                  position: '管理端'
+                });
+                // console.log(this.store.state.navBarControl.position)
 
                 var toastEl = document.getElementById('liveToast');
                 var toast = new Toast(toastEl, {
                   autohide: true,
-                  delay: 300
+                  delay: 100
                 });
                 toast.show();
                 this.message = '登录成功';
@@ -168,12 +179,16 @@ export default {
           success: resp => {
               if(resp.result === 'success') {
                 // 记录username
-                localStorage.setItem('username', this.username); 
+                localStorage.setItem('username', this.username);
+                // 更改全局变量，控制navBar展示项 
+                this.store.dispatch('updateNavBarControl', {
+                  position: '用户端'
+                });
 
                 var toastEl = document.getElementById('liveToast');
                 var toast = new Toast(toastEl, {
                   autohide: true,
-                  delay: 300
+                  delay: 100
                 });
                 toast.show();
                 this.message = '登录成功';
