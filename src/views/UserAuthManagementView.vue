@@ -25,7 +25,7 @@
               </tr>
           </thead>
           <tbody>
-              <tr v-for="(item, idx) in auth_infos" :key="idx">
+              <tr v-for="(item, idx) in use_list" :key="idx">
                   <td>{{item.username}}</td>
                   <td style="cursor: pointer;">
                     <svg t="1719163048594" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6280" width="25" height="25"><path d="M731.1 778.9V617.5c0-5.6-4.5-10.1-10.1-10.1h-59.5c-5.6 0-10.1 4.5-10.1 10.1v161.4h-40.7c-3.9 0-6.3 4.2-4.4 7.6l80.1 136.6c2 3.3 6.8 3.3 8.7 0l80.1-136.6c2-3.4-0.5-7.6-4.4-7.6h-39.7zM503.5 464.5H297c-14.9 0-27-12.2-27-27v-2c0-14.9 12.2-27 27-27h206.5c14.9 0 27 12.2 27 27v2c0 14.8-12.1 27-27 27zM568.6 564.6H297c-14.9 0-27-12.2-27-27v-2c0-14.9 12.2-27 27-27h271.6c14.9 0 27 12.2 27 27v2c0 14.8-12.1 27-27 27z" p-id="6281" fill="#ffffff"></path><path d="M470.7 860.7h-249V165.8h376.6v204.1h204.3l0.1 188.2c22.4 10.2 43 23.6 61.2 39.7V365.7c0-7.5-3-14.6-8.2-19.9L616 106.5c-5.3-5.3-12.4-8.2-19.9-8.2H174.5c-7.8 0-14.1 6.3-14.1 14.1v801.9c0 7.8 6.3 14.1 14.1 14.1h332.2c-15.3-20.5-27.6-43.2-36-67.7z" p-id="6282" fill="#ffffff"></path><path d="M526.5 608.6H296.1c-14.3 0-26.1 12.6-26.1 28s11.7 28 26.1 28h191.8c10.5-20.5 23.5-39.3 38.6-56zM467.6 708.7H296.1c-14.3 0-26.1 12.6-26.1 28s11.7 28 26.1 28h162c1.3-19.3 4.5-38.1 9.5-56z" p-id="6283" fill="#ffffff"></path></svg> 
@@ -307,5 +307,9 @@ export default {
 .table-striped tbody tr:nth-child(odd) td,
 .table-hover tbody tr:hover td {
   background-color: rgba(255, 255, 255, 0.08);
+}
+
+.changeable {
+  cursor: pointer;
 }
 </style>
