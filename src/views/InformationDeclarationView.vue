@@ -1,6 +1,6 @@
 <template>
     <!-- Toast容器 -->
-    <div class="position-fixed p-3" style="z-index: 5; left: 38vw; top: 8vh;">
+    <div class="position-fixed p-3" style="z-index: 5; left: 72vw; top: 8vh;">
       <div id="liveToast" class="toast toast-custom" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <strong class="mr-auto">{{message}}</strong>
@@ -137,7 +137,7 @@ export default {
               var toastEl = document.getElementById('liveToast');
               var toast = new Toast(toastEl, {
                 autohide: true,
-                delay: 400
+                delay: 1000000
               });
               toast.show();
               console.log(resp);
@@ -218,17 +218,7 @@ input {
   font-size: 18px;
 }
 
-@media (max-width: 1200px) {
-  .loginav{justify-content: center;}
-  .video{display: none;}
-  .loginbox{width: 96%;}
-  .logo h1{font-size: 30px;}
-  .logo h2{font-size: 20px;}
-  .loginbox{padding: 30px;}
-}
-
 .toast-custom {
-  background-color: #abc8f4; /* 成功的背景色 */
   color: white; /* 文本颜色 */
   border-radius: 0.25rem; /* 圆角 */
   border: none; /* 移除边框 */
@@ -244,10 +234,6 @@ input {
   background-color: #00166d; /* 头部背景色 */
   color: white; /* 头部文本颜色 */
   border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* 头部下边框 */
-}
-
-.toast-custom .toast-body {
-  font-size: 1rem; /* 主体文本大小 */
 }
 
 /* 动画效果 */

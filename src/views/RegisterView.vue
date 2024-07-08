@@ -1,13 +1,6 @@
 <template>
-  <div class="loginav">
-    <!--
-      <div class="video">
-        <video src="../assets/loginimages/video.mp4" muted autoplay loop></video>
-      </div>
-    -->
-
-    <!-- Toast容器 -->
-    <div class="position-fixed p-3" style="z-index: 5; left: 38vw; top: 8vh;">
+  <!-- Toast容器 -->
+    <div class="position-fixed p-3" style="z-index: 5; left: 72vw; top: 8vh;">
       <div id="liveToast" class="toast toast-custom" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <strong class="mr-auto">{{message}}</strong>
@@ -16,6 +9,14 @@
         </div>
       </div>
     </div>
+
+  <div class="loginav">
+
+    <!--
+      <div class="video">
+        <video src="../assets/loginimages/video.mp4" muted autoplay loop></video>
+      </div>
+    -->
 
 		<div class="loginbox boxall">
       <div style="display: flex;">
@@ -109,7 +110,11 @@ export default {
       authState: '',
       authCode: '',
       username: '',
+
+      message: '',
     };
+  },
+  mounted(){
   },
   methods: {
     handleFileChange(event) {
@@ -120,45 +125,38 @@ export default {
       
     },
     getAuthCode() {
+      var toastEl = document.getElementById('liveToast');
+      var toast = new Toast(toastEl, {
+        autohide: true,
+        delay: 800
+      });
+
       $.ajax({
         url: "/api/auth/getCodeByUsername/",
         type: "POST",
-        contentType: "application/x-www-form-urlencoded",
         data: {
           'username': this.username,
         },
         success: resp => {
             if(resp.result === 'success') {
               console.log(resp);
-              var toastEl = document.getElementById('liveToast');
-              var toast = new Toast(toastEl, {
-                autohide: true,
-                delay: 800
-              });
               this.authState = resp.authState;
               this.authCode = resp.authCode;
-              toast.show();
               this.message = '状态更新成功';
+              toast.show();
             } else {
-              var toastEl2 = document.getElementById('liveToast');
-              var toast2 = new Toast(toastEl2, {
-                autohide: true,
-                delay: 800
-              });
-              toast2.show();
               console.log(resp);
-              this.message = resp.data.result;
+              this.authState = '';
+              this.authCode = '';
+              this.message = resp.result;
+              console.log(this.message)
+              toast.show();
             }
         },
         error: resp => {
-            var toastEl3 = document.getElementById('liveToast');
-            var toast3 = new Toast(toastEl3, {
-              autohide: true,
-              delay: 800
-            });
-            toast3.show();
             console.log(resp);
             this.message = '请求失败';
+            toast.show();
         }
       })
     },
@@ -166,6 +164,12 @@ export default {
       document.querySelector('input[type="file"]').click();
     },
     submitFile() {
+      var toastEl = document.getElementById('liveToast');
+      var toast = new Toast(toastEl, {
+        autohide: true,
+        delay: 800
+      });
+
       if (!this.file) {
         alert('请先选择一个文件');
         return;
@@ -184,13 +188,8 @@ export default {
       }).then(response => {
         console.log(response.data.result);
         if(response.data.result == 'success') {
-          var toastEl3 = document.getElementById('liveToast');
-            var toast3 = new Toast(toastEl3, {
-              autohide: true,
-              delay: 800
-            });
-            toast3.show();
             this.message = '认证资料上传成功';
+            toast.show();
         }
       }).catch(error => {
         console.error('文件上传失败，错误：', error);
@@ -294,8 +293,6 @@ input[type=radio]:disabled:before{content:'';width:.5rem;height:.3rem;position:a
 input[type="radio"]{ border-radius: 20px;}
 input{outline: none!important;}
 
-
-
 @media (max-width: 1200px) {
   .loginav{justify-content: center;}
   .video{display: none;}
@@ -304,7 +301,6 @@ input{outline: none!important;}
   .logo h2{font-size: 20px;}
   .loginbox{padding: 0px;}
 }
-
 
 .toast-custom {
   background-color: #abc8f4; /* 成功的背景色 */
@@ -319,7 +315,7 @@ input{outline: none!important;}
   align-items: center;
   justify-content: center; /* 水平居中 */
   text-align: center; /* 垂直居中 */
-  
+  padding: 2vh 3vh;
   background-color: #00166d; /* 头部背景色 */
   color: white; /* 头部文本颜色 */
   border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* 头部下边框 */

@@ -194,13 +194,30 @@ export default {
         },
         success: resp => {
             if(resp.result === 'success') {
-              var toastEl = document.getElementById('liveToast');
-              var toast = new Toast(toastEl, {
-                autohide: true,
-                delay: 400
-              });
-              toast.show();
-              this.message = '删除成功';
+              $.ajax({
+                url: "/api/declaration/getinfos/",
+                type: "get",
+                success: resp => {
+                    if(resp.result === 'success') {
+                      this.declaration_infos = resp.declarationInfos;
+                      this.totalItems = this.declaration_infos.length;
+                      this.totalPages = Math.ceil(this.totalItems / this.pageSize);
+                      this.handlePageChange(this.currentPage);
+                    } else {
+                      console.log(resp.result);
+                    }
+                },
+                error: resp => {
+                    var toastEl = document.getElementById('liveToast');
+                    var toast = new Toast(toastEl, {
+                      autohide: true,
+                      delay: 400
+                    });
+                    toast.show();
+                    console.log(resp);
+                    this.message = '请求失败';
+                }
+              })
             } else {
               console.log(resp.result);
               var toastEl2 = document.getElementById('liveToast');
@@ -242,7 +259,7 @@ export default {
                 success: resp => {
                     if(resp.result === 'success') {
                       this.declaration_infos = resp.declarationInfos
-                      
+                      this.handlePageChange(this.currentPage);
                     } else {
                       console.log(resp.result);
                     }
@@ -330,6 +347,16 @@ export default {
   .col-4 {
     flex-basis: 100%; /* 将每个列的基础宽度设置为100% */
   }
+}
+
+.page-link {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+button {
+  opacity: 0.90;
 }
 
 .mainbox {

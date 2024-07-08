@@ -1,4 +1,13 @@
 <template>
+  <!-- Toast容器 -->
+  <div class="position-fixed p-3" style="z-index: 5; left: 72vw; top: 8vh;">
+    <div id="liveToast" class="toast toast-custom" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="mr-auto">{{message}}</strong>
+      </div>
+    </div>
+  </div>
+
   <div class="loginav">
 
     <!--
@@ -6,18 +15,6 @@
         <video src="../assets/loginimages/video.mp4" muted autoplay loop></video>
       </div>
     -->
-    
-    
-    <!-- Toast容器 -->
-    <div class="position-fixed p-3" style="z-index: 5; left: 38vw; top: 8vh;">
-      <div id="liveToast" class="toast toast-custom" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-          <strong class="mr-auto">{{message}}</strong>
-        </div>
-        <div class="toast-body">
-        </div>
-      </div>
-    </div>
 
 		<div class="loginbox boxall">
       <div style="display: flex;">
@@ -138,7 +135,7 @@ export default {
                 var toastEl = document.getElementById('liveToast');
                 var toast = new Toast(toastEl, {
                   autohide: true,
-                  delay: 100
+                  delay: 0
                 });
                 toast.show();
                 this.message = '登录成功';
@@ -188,7 +185,7 @@ export default {
                 var toastEl = document.getElementById('liveToast');
                 var toast = new Toast(toastEl, {
                   autohide: true,
-                  delay: 100
+                  delay: 0
                 });
                 toast.show();
                 this.message = '登录成功';
@@ -326,8 +323,6 @@ input[type=radio]:disabled:before{content:'';width:.5rem;height:.3rem;position:a
 input[type="radio"]{ border-radius: 20px;}
 input{outline: none!important;}
 
-
-
 @media (max-width: 1200px) {
   .loginav{justify-content: center;}
   .video{display: none;}
@@ -338,7 +333,6 @@ input{outline: none!important;}
 }
 
 .toast-custom {
-  background-color: #abc8f4; /* 成功的背景色 */
   color: white; /* 文本颜色 */
   border-radius: 0.25rem; /* 圆角 */
   border: none; /* 移除边框 */
@@ -350,14 +344,10 @@ input{outline: none!important;}
   align-items: center;
   justify-content: center; /* 水平居中 */
   text-align: center; /* 垂直居中 */
-  
+  padding: 2vh 3vh;
   background-color: #00166d; /* 头部背景色 */
   color: white; /* 头部文本颜色 */
   border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* 头部下边框 */
-}
-
-.toast-custom .toast-body {
-  font-size: 1rem; /* 主体文本大小 */
 }
 
 /* 动画效果 */
