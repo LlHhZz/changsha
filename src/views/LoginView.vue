@@ -40,7 +40,11 @@
 					<a href="#" class="text-primary"> 忘记密码？</a>
 				</div>
 				<li class="row">
-					<button type="submit" href="#" class="btn btnblock btn-lg btn-block btn-primary" style="background-color: #052a95; border-color: #052a95;">确认登录</button>
+					<button :disabled="onLoading" type="submit" href="#" class="btn btnblock btn-lg btn-block btn-primary" style="background-color: #052a95; border-color: #052a95; display: flex; align-items: center; justify-content: center;">
+            <div class="spinner-border text-light" role="status" v-if="onLoading" style="opacity: 0.85; margin-right: 20px;">
+            </div>
+            确认登录
+          </button>
 				</li>
         <div class=" flex1" style="padding: 15px 0;">
 					<label> &nbsp;其他登录方式</label>
@@ -102,6 +106,7 @@ export default {
       password: '',
       port: '管理端',
       message: '',
+      onLoading: false,
     };
   },
   setup() {
@@ -111,6 +116,7 @@ export default {
   },
   methods: {
     login() {
+      this.onLoading = true;
       localStorage.setItem('port', this.port);
       const outer = this;
       if(this.port === '管理端') {
@@ -131,7 +137,6 @@ export default {
                   position: '管理端'
                 });
                 // console.log(this.store.state.navBarControl.position)
-
                 var toastEl = document.getElementById('liveToast');
                 var toast = new Toast(toastEl, {
                   autohide: true,
@@ -141,6 +146,7 @@ export default {
                 this.message = '登录成功';
                 toastEl.addEventListener('hidden.bs.toast', function () {
                   // Toast消失后，进行页面跳转
+                  this.onLoading = false;
                   outer.$router.push({name: 'home', params: {}});
                 });
               } else {
@@ -151,6 +157,7 @@ export default {
                 });
                 toast2.show();
                 this.message = resp.result;
+                this.onLoading = false;
               }
           },
           error: resp => {
@@ -162,6 +169,7 @@ export default {
               toast3.show();
               console.log(resp);
               this.message = '请求失败';
+              this.onLoading = false;
           }
         })
       } else {
@@ -191,6 +199,7 @@ export default {
                 this.message = '登录成功';
                 toastEl.addEventListener('hidden.bs.toast', function () {
                   // Toast消失后，进行页面跳转
+                  this.onLoading = false;
                   outer.$router.push({name: 'home', params: {}});
                 });
               } else {
@@ -201,6 +210,7 @@ export default {
                 });
                 toast2.show();
                 this.message = resp.result;
+                this.onLoading = false;
               }
           },
           error: resp => {
@@ -212,6 +222,7 @@ export default {
               toast3.show();
               console.log(resp);
               this.message = '请求失败';
+              this.onLoading = false;
           }
         })
       }
@@ -360,5 +371,22 @@ input{outline: none!important;}
   opacity: 0;
   transform: translateY(100%);
   transition: opacity 0.5s, transform 0.5s;
+}
+
+/* 定义渐入渐出动画 */
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(20px); /* 可以添加一些垂直位移效果 */
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 应用动画到toast组件 */
+.toast-custom {
+  animation: fadeInOut 2s infinite; /* 动画持续时间，次数和是否无限循环 */
 }
 </style>

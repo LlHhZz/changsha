@@ -92,7 +92,7 @@
                 <li class="page-link">共{{ totalItems }}条</li>
                 
                 <select class="page-link" v-model="pageSize">
-                  <option v-for="size in pageSizes" :key="size" :value="size">{{ size }}</option>
+                  <option v-for="size in pageSizes" :key="size" :value="size" style="color: black;">{{ size }}</option>
                 </select>
                 
                 <li class="page-link">条/页</li>
@@ -374,5 +374,22 @@ button {
 
 .btn-danger:hover {
     background-color: #d32f2f; /* 修改危险按钮的鼠标悬停背景颜色 */
+}
+
+/* 定义渐入渐出动画 */
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(20px); /* 可以添加一些垂直位移效果 */
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 应用动画到toast组件 */
+.toast-custom {
+  animation: fadeInOut 2s infinite; /* 动画持续时间，次数和是否无限循环 */
 }
 </style>

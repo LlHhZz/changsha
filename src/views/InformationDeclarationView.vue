@@ -137,7 +137,7 @@ export default {
               var toastEl = document.getElementById('liveToast');
               var toast = new Toast(toastEl, {
                 autohide: true,
-                delay: 1000000
+                delay: 300
               });
               toast.show();
               console.log(resp);
@@ -246,5 +246,22 @@ input {
   opacity: 0;
   transform: translateY(100%);
   transition: opacity 0.5s, transform 0.5s;
+}
+
+/* 定义渐入渐出动画 */
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(20px); /* 可以添加一些垂直位移效果 */
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 应用动画到toast组件 */
+.toast-custom {
+  animation: fadeInOut 2s infinite; /* 动画持续时间，次数和是否无限循环 */
 }
 </style>

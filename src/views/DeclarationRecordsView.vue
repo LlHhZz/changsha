@@ -16,7 +16,10 @@
         <table class="table table-striped table-hover">
           <thead>
               <tr>
-                  <th scope="col">用户名</th>
+                  <!--
+                    <th scope="col">用户名</th>
+                  -->
+                  
                   <th scope="col">申报区域</th>
                   <th scope="col">申报电量</th>
                   <th scope="col">调频容量</th>
@@ -24,13 +27,18 @@
                   <th scope="col">里程价格</th>
                   <th scope="col">容量价格</th>
                   <th scope="col">审核状态</th>
-                  <th scope="col">操作</th>
                   <th scope="col">删除记录</th>
+                  <!--
+                    <th scope="col">操作</th>
+                  -->
               </tr>
           </thead>
           <tbody>
               <tr v-for="(item, idx) in use_list" :key="idx">
-                  <td>{{item.username}}</td>
+                <!--
+                    <td>{{item.username}}</td>
+                -->
+                  
                   <td>{{item.declarationArea}}</td>
                   <td>{{item.declarationElectricity}}</td>
                   <td>{{item.FMCapacity}}</td>
@@ -38,7 +46,9 @@
                   <td>{{item.mileagePrice}}</td>
                   <td>{{item.capacityPrice}}</td>
                   <td>{{item.reviewState}}</td>
-                  <td v-if="item.reviewState === '待审核'">
+
+                  <!--
+                    <td v-if="item.reviewState === '待审核'">
                     <button class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#exampleModal_' + item.id">
                       <svg t="1720090762854" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9516" width="20" height="20"><path d="M125.44 906.24h788.48c25.6-2.56 23.04 5.12 23.04-23.04V819.2c0-35.84-7.68-43.52-43.52-43.52h-153.6c-20.48-15.36-23.04-35.84-28.16-40.96-89.6-99.84-38.4-166.4 17.92-258.56 10.24-12.8 20.48-25.6 28.16-40.96 23.04-40.96 35.84-87.04 35.84-138.24C793.6 138.24 665.6 7.68 504.32 7.68c-158.72 0-289.28 128-289.28 289.28 0 66.56 23.04 128 61.44 176.64 61.44 97.28 161.28 176.64 0 302.08h-153.6c-28.16 0-43.52 15.36-43.52 43.52v66.56c0 25.6 17.92 20.48 46.08 20.48z m855.04 43.52H35.84c-12.8 0-23.04 10.24-23.04 23.04v23.04c0 12.8 10.24 23.04 23.04 23.04h942.08c12.8 0 23.04-10.24 23.04-23.04V972.8c0-12.8-10.24-23.04-20.48-23.04z" fill="#ffffff" p-id="9517"></path></svg>
                       认证确认
@@ -50,13 +60,13 @@
                       完成确认
                     </button>
                   </td>
+                  -->
                   <td>
                     <button class="btn btn-primary" @click="handleDeclarationDelete(item.id)">
                       <svg t="1720091412233" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="46701" width="20" height="20"><path d="M163.690667 969.152A53.610667 53.610667 0 0 0 215.936 1024h609.514667a53.610667 53.610667 0 0 0 52.245333-54.869333V256H163.690667v713.152z m513.728-548.565333a44.672 44.672 0 0 1 43.541333-45.717334h8.64a44.672 44.672 0 0 1 43.541333 45.717334v448a44.672 44.672 0 0 1-43.541333 45.717333h-8.64a44.650667 44.650667 0 0 1-43.541333-45.717333v-448z m-209.066667 0A44.672 44.672 0 0 1 512 374.869333h8.704a44.672 44.672 0 0 1 43.541333 45.717334v448a44.650667 44.650667 0 0 1-43.541333 45.717333H512a44.650667 44.650667 0 0 1-43.541333-45.717333v-448z m-200.277333 0a44.672 44.672 0 0 1 43.541333-45.717334h8.810667a44.672 44.672 0 0 1 43.541333 45.717334v448a44.672 44.672 0 0 1-43.541333 45.717333h-8.725334a44.672 44.672 0 0 1-43.541333-45.717333v-448zM895.104 109.738667H616.533333v-64A44.650667 44.650667 0 0 0 572.928 0H459.733333a44.672 44.672 0 0 0-43.541333 45.717333v64H128.853333A44.672 44.672 0 0 0 85.333333 155.456v45.696h853.333334V155.456a44.672 44.672 0 0 0-43.541334-45.717333z m0 0" p-id="46702" fill="#ffffff"></path></svg>
                       删除
                     </button>
                   </td>
-                  <!-- Modal -->
                   <div class="modal fade" :id="'exampleModal_' + item.id" tabindex="-1" :aria-labelledby="'exampleModalLabel_' + item.id"
                       aria-hidden="true" style="background-color: transparent;">
                       <div class="modal-dialog modal-dialog-centered">
@@ -159,7 +169,7 @@ export default {
     this.port = localStorage.getItem('port');
 
     $.ajax({
-      url: "/api/declaration/getinfos/",
+      url: "/api/declaration/getinfos/byUsername/",
       type: "get",
       success: resp => {
           if(resp.result === 'success') {
@@ -195,7 +205,7 @@ export default {
         success: resp => {
             if(resp.result === 'success') {
               $.ajax({
-                url: "/api/declaration/getinfos/",
+                url: "/api/declaration/getinfos/byUsername/",
                 type: "get",
                 success: resp => {
                     if(resp.result === 'success') {

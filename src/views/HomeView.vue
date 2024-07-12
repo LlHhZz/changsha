@@ -159,7 +159,7 @@ export default {
   display: flex;
   min-width: 1024px;
   max-width: 1920px;
-  margin: 0 auto;
+  margin: 1.25rem 2rem;
   padding: 0.125rem 0.125rem 0;
   .column {
     flex: 3;
