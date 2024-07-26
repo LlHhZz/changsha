@@ -92,6 +92,26 @@
               </tr>
           </tbody>
       </table>
+      <div style="float: left; margin-left: 8%;">
+            <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item changeable" @click="handleReset()">
+                    <div class="page-link">
+                      <svg t="1721962930692" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="19874" width="23" height="23"><path d="M950.4 425.4c-11.8-59.2-34.8-114.4-68.4-164-32.5-47.9-73.4-88.5-121.7-120.8S658.8 85.9 602.2 74.2c-58.7-12.2-118.5-12.4-177.7-0.7-81.3 16.1-155 53.5-215.2 108.9l-95-97.8C105 75 88.6 81.5 88.4 94.9l-3.6 249c-0.1 8.3 6.5 15.2 14.8 15.3l249 3.6c13.4 0.2 20.4-15.9 11-25.6L259.5 234.1c50.2-45.7 111.5-76.5 179-89.9 98.4-19.5 198.5 0.5 281.8 56.2 83.4 55.8 140 140.6 159.5 239s-0.5 198.5-56.2 281.8c-55.8 83.4-140.6 140-239 159.5-77.3 15.3-156 6.3-227.6-26.1-70.1-31.7-127.9-83.1-167.4-148.7-10.2-17-32.4-22.6-49.4-12.3-17 10.2-22.5 32.4-12.3 49.4 23.4 38.9 52.5 74 86.7 104.2 33.7 29.9 71.7 54.5 112.7 73.1 58.3 26.4 120.5 39.8 183.5 39.8 29.2 0 58.6-2.9 87.8-8.7 59.2-11.8 114.4-34.8 164-68.4 47.9-32.5 88.5-73.4 120.8-121.7s54.6-101.5 66.4-158.2c12.2-58.7 12.4-118.5 0.6-177.7z" fill="#ffffff" p-id="19875"></path></svg>
+                    </div>
+                </li>
+
+                <input class="page-link" v-model="searchUsername" placeholder="请输入用户名" />
+                
+                <li class="page-item changeable" @click="handleSearchUsername()">
+                    <div class="page-link">
+                      <svg t="1721962899632" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="18779" width="23" height="23"><path d="M427.418 2.195C662.08 2.195 852.3 192.42 852.3 427.077a424.176 424.176 0 0 1-22.749 137.458 41.484 41.484 0 0 1-1.504 4.323 422.176 422.176 0 0 1-5.986 15.887l-2.625-2.63a42.447 42.447 0 0 1-73.116-29.328l-0.39-3.93c0-11.164 4.309-21.315 11.35-28.893l-3.562-3.561a339.522 339.522 0 0 0 12.127-90.124c0-187.329-151.871-339.2-339.21-339.2C239.29 87.08 87.42 238.95 87.42 426.28c0 187.355 151.87 339.215 339.215 339.215 91.444 0 174.435-36.19 235.435-95.025a42.437 42.437 0 0 1 63.788-4.298l283.184 283.183c16.567 16.568 16.567 43.455 0 60.018a42.437 42.437 0 0 1-60.028 0L695.967 756.325c-73.188 59.772-166.678 95.63-268.55 95.63-234.657 0-424.882-190.236-424.882-424.883C2.535 192.42 192.76 2.19 427.418 2.19z" fill="#ffffff" p-id="18780"></path></svg>
+                    </div>
+                </li>
+                
+            </ul>
+            </nav>
+      </div>
       <div style="float: right; margin-right: 8%;">
             <nav aria-label="Page navigation example">
             <ul class="pagination">
@@ -135,6 +155,7 @@ export default {
       declaration_infos: [],
       message: '',
       authenticationCode: '',
+      searchUsername: '',
 
       totalPages: 1,
       currentPage: 1,
@@ -175,7 +196,7 @@ export default {
           var toastEl = document.getElementById('liveToast');
           var toast = new Toast(toastEl, {
             autohide: true,
-            delay: 400
+            delay: 1500
           });
           toast.show();
           console.log(resp);
@@ -211,7 +232,7 @@ export default {
                     var toastEl = document.getElementById('liveToast');
                     var toast = new Toast(toastEl, {
                       autohide: true,
-                      delay: 400
+                      delay: 1500
                     });
                     toast.show();
                     console.log(resp);
@@ -223,7 +244,7 @@ export default {
               var toastEl2 = document.getElementById('liveToast');
               var toast2 = new Toast(toastEl2, {
                 autohide: true,
-                delay: 400
+                delay: 1500
               });
               toast2.show();
               console.log(resp);
@@ -234,7 +255,7 @@ export default {
             var toastEl2 = document.getElementById('liveToast');
             var toast2 = new Toast(toastEl2, {
               autohide: true,
-              delay: 400
+              delay: 1500
             });
             toast2.show();
             console.log(resp);
@@ -268,7 +289,7 @@ export default {
                     var toastEl = document.getElementById('liveToast');
                     var toast = new Toast(toastEl, {
                       autohide: true,
-                      delay: 400
+                      delay: 1500
                     });
                     toast.show();
                     console.log(resp);
@@ -280,7 +301,7 @@ export default {
               var toastEl = document.getElementById('liveToast');
               var toast = new Toast(toastEl, {
                 autohide: true,
-                delay: 400
+                delay: 1500
               });
               toast.show();
               console.log(resp);
@@ -291,7 +312,7 @@ export default {
             var toastEl2 = document.getElementById('liveToast');
             var toast2 = new Toast(toastEl2, {
               autohide: true,
-              delay: 400
+              delay: 1500
             });
             toast2.show();
             console.log(resp);
@@ -305,7 +326,7 @@ export default {
         var toastEl = document.getElementById('liveToast');
         var toast = new Toast(toastEl, {
           autohide: true,
-          delay: 300
+          delay: 1500
         });
         toast.show();
         this.message = '没有上一页了！';
@@ -315,7 +336,7 @@ export default {
         var toastEl2 = document.getElementById('liveToast');
         var toast2 = new Toast(toastEl2, {
           autohide: true,
-          delay: 300
+          delay: 1500
         });
         toast2.show();
         this.message = '没有下一页了！';
@@ -326,6 +347,72 @@ export default {
       let end = start + this.pageSize;
 
       this.use_list = this.declaration_infos.slice(start, end);
+    },
+    handleSearchUsername() {
+      if(this.searchUsername === '') {
+        var toastEl = document.getElementById('liveToast');
+        var toast = new Toast(toastEl, {
+          autohide: true,
+          delay: 1500
+        });
+        toast.show();
+        this.message = '请输入查找的用户名';
+      } else {
+        this.declaration_infos = this.declaration_infos.filter(info => 
+            info.username.toLowerCase().includes(this.searchUsername.toLowerCase())
+        );
+        this.totalItems = this.declaration_infos.length;
+        this.totalPages = Math.ceil(this.totalItems / this.pageSize);
+        this.handlePageChange(1);
+
+        $.ajax({
+          url: "/api/declaration/getinfos/",
+          type: "get",
+          success: resp => {
+              if(resp.result === 'success') {
+                this.declaration_infos = resp.declarationInfos;
+              } else {
+                console.log(resp.result);
+              }
+          },
+          error: resp => {
+              var toastEl = document.getElementById('liveToast');
+              var toast = new Toast(toastEl, {
+                autohide: true,
+                delay: 1500
+              });
+              toast.show();
+              console.log(resp);
+              this.message = '请求失败';
+          }
+        })
+      }
+    },
+    handleReset() {
+      $.ajax({
+        url: "/api/declaration/getinfos/",
+        type: "get",
+        success: resp => {
+            if(resp.result === 'success') {
+              this.declaration_infos = resp.declarationInfos;
+              this.totalItems = this.declaration_infos.length;
+              this.totalPages = Math.ceil(this.totalItems / this.pageSize);
+              this.handlePageChange(1);
+            } else {
+              console.log(resp.result);
+            }
+        },
+        error: resp => {
+            var toastEl = document.getElementById('liveToast');
+            var toast = new Toast(toastEl, {
+              autohide: true,
+              delay: 1500
+            });
+            toast.show();
+            console.log(resp);
+            this.message = '请求失败';
+        }
+      })
     },
   },
   watch: {

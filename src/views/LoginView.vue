@@ -140,7 +140,7 @@ export default {
                 var toastEl = document.getElementById('liveToast');
                 var toast = new Toast(toastEl, {
                   autohide: true,
-                  delay: 0
+                  delay: 1000
                 });
                 toast.show();
                 this.message = '登录成功';
@@ -153,7 +153,7 @@ export default {
                 var toastEl2 = document.getElementById('liveToast');
                 var toast2 = new Toast(toastEl2, {
                   autohide: true,
-                  delay: 300
+                  delay: 1000
                 });
                 toast2.show();
                 this.message = resp.result;
@@ -164,7 +164,7 @@ export default {
               var toastEl3 = document.getElementById('liveToast');
               var toast3 = new Toast(toastEl3, {
                 autohide: true,
-                delay: 300
+                delay: 1000
               });
               toast3.show();
               console.log(resp);
@@ -193,7 +193,7 @@ export default {
                 var toastEl = document.getElementById('liveToast');
                 var toast = new Toast(toastEl, {
                   autohide: true,
-                  delay: 0
+                  delay: 1000
                 });
                 toast.show();
                 this.message = '登录成功';
@@ -206,7 +206,7 @@ export default {
                 var toastEl2 = document.getElementById('liveToast');
                 var toast2 = new Toast(toastEl2, {
                   autohide: true,
-                  delay: 300
+                  delay: 1000
                 });
                 toast2.show();
                 this.message = resp.result;
@@ -217,7 +217,7 @@ export default {
               var toastEl3 = document.getElementById('liveToast');
               var toast3 = new Toast(toastEl3, {
                 autohide: true,
-                delay: 300
+                delay: 1000
               });
               toast3.show();
               console.log(resp);

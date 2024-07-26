@@ -10,7 +10,7 @@
       </div>
     </div>
 
-    <table v-if="port==='用户端'" class="table table-striped table-hover">
+    <!-- <table v-if="port==='用户端'" class="table table-striped table-hover">
         <thead>
             <tr>
                 <th scope="col">序号</th>
@@ -50,8 +50,8 @@
                 <td>168</td>
             </tr>
         </tbody>
-    </table>
-    <table v-if="port==='管理端'" class="table table-striped table-hover">
+    </table> -->
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th scope="col">编号</th>
@@ -106,6 +106,7 @@ export default {
         this.name = localStorage.getItem('name');
         this.value = localStorage.getItem('value');
         this.port = localStorage.getItem('port');
+        this.username = localStorage.getItem('username');
 
         $.ajax({
         url: "/api/declaration/getinfos/",
@@ -113,7 +114,12 @@ export default {
         success: resp => {
             if(resp.result === 'success') {
                 this.declaration_infos = resp.declarationInfos;
-                this.use_list = this.declaration_infos.filter(item => item.reviewState === '已通过').slice(0, 6);
+                if(this.port === '管理端') {
+                    this.use_list = this.declaration_infos.filter(item => item.reviewState === '已通过').slice(0, 6);
+                } else if(this.port === '用户端') {
+                    this.use_list = this.declaration_infos.filter(item => item.username === this.username);
+                    this.use_list = this.use_list.filter(item => item.reviewState === '已通过').slice(0, 6);
+                }
             } else {
                 console.log(resp.result);
             }
