@@ -90,6 +90,7 @@ export default {
             name: '',
             value: '',
             port: '',
+            username: '',
             declaration_infos: [],
             message: '',
             authenticationCode: '',

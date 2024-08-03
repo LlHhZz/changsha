@@ -132,58 +132,58 @@ export default{
         myChart1.setOption(option1)
 
 
-        let myChart2 = echarts.init(this.$refs.myChart2)
-        // 设置数据
-        let data = [
-            {value: 2572975.876, name: "市场收入"},
-            {value: 2243473.567, name: "火电支出"},
-            {value: 26360.18476, name: "储能支出"},
-            {value: 303142.1251, name: "市场盈余"},
-        ]
-        let option2 = {
-            color: ["#3e5fff", "#4591ff", "#4ab7f0", "#a0ddbd"],
-            title: {
-                // text: '收益统计',
-                left: 'left',
-                textStyle: {
-                    color: 'white',
-                    fontSize: 13,
-                    fontWeight: 'bold'
-                }
-            },
-            legend: {
-                bottom: "0%",
-                itemWidth: 10,
-                itemHeight: 10,
-                textStyle: {
-                    color: "rgba(255, 255, 255, .8)",
-                    fontSize: "12"
-                }
-            },
-            series: [
-                {
-                    name: '百分比图',
-                    type: 'pie',
-                    data: data,
-                    label: { // 设置标签
-                        show: true,
-                        formatter: '{b}: {c} ({d}%)',
-                        textStyle: {
-                            color: "rgba(255, 255, 255, .8)",
-                        },
-                        position: "inside",
-                    },
-                    radius: ["50%", "70%"],
-                    // roseType: "area",
-                }
-            ]
-        }
-        myChart2.setOption(option2)
+        // let myChart2 = echarts.init(this.$refs.myChart2)
+        // // 设置数据
+        // let data = [
+        //     {value: 2572975.876, name: "市场收入"},
+        //     {value: 2243473.567, name: "火电支出"},
+        //     {value: 26360.18476, name: "储能支出"},
+        //     {value: 303142.1251, name: "市场盈余"},
+        // ]
+        // let option2 = {
+        //     color: ["#3e5fff", "#4591ff", "#4ab7f0", "#a0ddbd"],
+        //     title: {
+        //         // text: '收益统计',
+        //         left: 'left',
+        //         textStyle: {
+        //             color: 'white',
+        //             fontSize: 13,
+        //             fontWeight: 'bold'
+        //         }
+        //     },
+        //     legend: {
+        //         bottom: "0%",
+        //         itemWidth: 10,
+        //         itemHeight: 10,
+        //         textStyle: {
+        //             color: "rgba(255, 255, 255, .8)",
+        //             fontSize: "12"
+        //         }
+        //     },
+        //     series: [
+        //         {
+        //             name: '百分比图',
+        //             type: 'pie',
+        //             data: data,
+        //             label: { // 设置标签
+        //                 show: true,
+        //                 formatter: '{b}: {c} ({d}%)',
+        //                 textStyle: {
+        //                     color: "rgba(255, 255, 255, .8)",
+        //                 },
+        //                 position: "inside",
+        //             },
+        //             radius: ["50%", "70%"],
+        //             // roseType: "area",
+        //         }
+        //     ]
+        // }
+        // myChart2.setOption(option2)
 
         // 监听页面大小实现图表大小自适应
         window.addEventListener("resize", () => {
             myChart1.resize();
-            myChart2.resize();
+            // myChart2.resize();
         })
     }
 }
@@ -191,9 +191,10 @@ export default{
 
 <style scoped>
 #myChart1{
-    width: 80%;
+    width: 100%;
     height: 300px;
 }
+
 #myChart2{
     width: 20%;
     height: 300px;
