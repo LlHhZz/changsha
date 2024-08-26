@@ -94,6 +94,7 @@ export default {
             declaration_infos: [],
             message: '',
             authenticationCode: '',
+            baseUrl: 'http://8.148.13.44:9000',
 
             totalPages: 1,
             currentPage: 1,

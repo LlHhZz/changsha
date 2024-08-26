@@ -156,6 +156,7 @@ export default {
       message: '',
       authenticationCode: '',
       searchUsername: '',
+      baseUrl: 'http://8.148.13.44:9000',
 
       totalPages: 1,
       currentPage: 1,
@@ -207,6 +208,7 @@ export default {
   methods: {
     handleDeclarationDelete(id) {
       console.log(id);
+
       $.ajax({
         url: "/api/declaration/delete/",
         type: "post",
@@ -265,6 +267,7 @@ export default {
     },
     handleDeclarationEdit(id, state) {
       console.log(id);
+
       $.ajax({
         url: "/api/declaration/edit/",
         type: "post",

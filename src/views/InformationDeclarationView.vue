@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="margin: 0;">
         <div class="col-1">
             <!--
                 <OffCanvas></OffCanvas>
@@ -100,6 +100,7 @@ export default {
       areaName: '',
       areaValue: '',
       message: '',
+      baseUrl: 'http://8.148.13.44:9000',
 
       declarationElectricity: 0,
       FMCapacity: 0,
@@ -119,6 +120,7 @@ export default {
   },
   methods: {
     handleDeclarationUpload() {
+
       $.ajax({
         url: "/api/declaration/upload/",
         type: "post",

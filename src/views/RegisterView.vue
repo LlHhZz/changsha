@@ -110,6 +110,7 @@ export default {
       authState: '',
       authCode: '',
       username: '',
+      baseUrl: 'http://8.148.13.44:9000',
 
       message: '',
     };
@@ -180,7 +181,7 @@ export default {
       const formData = new FormData();
       formData.append('username', this.username);
       formData.append('file', this.file);
-
+      
       axios.post('/api/auth/upload/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',

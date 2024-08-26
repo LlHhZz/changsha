@@ -95,7 +95,8 @@
 
 <script>
 // import ContentBase from '../components/ContentBase';
-import $ from 'jquery';
+// import $ from 'jquery';
+import axios from 'axios';
 import { Toast } from 'bootstrap';
 import { useStore } from 'vuex';
 
@@ -107,6 +108,8 @@ export default {
       port: '管理端',
       message: '',
       onLoading: false,
+
+      baseUrl: 'http://8.148.13.44:9000',
     };
   },
   setup() {
@@ -115,6 +118,7 @@ export default {
     return { store }
   },
   methods: {
+    /*
     login() {
       this.onLoading = true;
       localStorage.setItem('port', this.port);
@@ -123,7 +127,7 @@ export default {
         $.ajax({
           url: "/api/login/",
           type: "POST",
-          contentType: "application/x-www-form-urlencoded",
+          // contentType: "application/x-www-form-urlencoded",
           data: {
             'username': this.username,
             'password': this.password
@@ -176,7 +180,7 @@ export default {
         $.ajax({
           url: "/api/login2/",
           type: "POST",
-          contentType: "application/x-www-form-urlencoded",
+          // contentType: "application/x-www-form-urlencoded",
           data: {
             'username': this.username,
             'password': this.password
@@ -227,6 +231,64 @@ export default {
         })
       }
     },
+    */
+   login() {
+    this.onLoading = true;
+    localStorage.setItem('port', this.port);
+    const vm = this; // 使用 vm 代替 outer，以避免混淆
+
+    const loginUrl = this.port === '管理端' ? "/api/login/" : "/api/login2/";
+
+    axios.post(loginUrl , {
+      'username': this.username,
+      'password': this.password
+    }, {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+    .then(function (response) {
+      if(response.data.result === 'success') {
+        localStorage.setItem('username', vm.username);
+        vm.store.dispatch('updateNavBarControl', {
+          position: vm.port
+        });
+
+        var toastEl = document.getElementById('liveToast');
+        var toast = new Toast(toastEl, {
+          autohide: true,
+          delay: 1000
+        });
+        toast.show();
+        vm.message = '登录成功';
+
+        toastEl.addEventListener('hidden.bs.toast', function () {
+          vm.onLoading = false;
+          vm.$router.push({name: 'home', params: {}});
+        });
+      } else {
+        var toastEl2 = document.getElementById('liveToast');
+        var toast2 = new Toast(toastEl2, {
+          autohide: true,
+          delay: 1000
+        });
+        toast2.show();
+        vm.message = response.data.result;
+        vm.onLoading = false;
+      }
+    })
+    .catch(function (error) {
+      var toastEl3 = document.getElementById('liveToast');
+      var toast3 = new Toast(toastEl3, {
+        autohide: true,
+        delay: 1000
+      });
+      toast3.show();
+      console.log(error);
+      vm.message = '请求失败';
+      vm.onLoading = false;
+    });
+  },
     onChangePortTap() {
       if(this.port == '管理端') {
         this.port = '用户端'

@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row" style="margin: 0;">
     <div class="col-1">
       <!--
         <OffCanvas></OffCanvas>
@@ -54,7 +54,7 @@
           </div>
           <div class="row">
             <div class="panel">
-              <h2>各分区中标量统计对比</h2>
+              <h2>各时段中标量统计</h2>
               <div class="chart">
                 <StatisticalComparisonOfWinningOnEachPartition></StatisticalComparisonOfWinningOnEachPartition>
               </div>

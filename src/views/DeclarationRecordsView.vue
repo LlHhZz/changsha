@@ -145,6 +145,7 @@ export default {
       declaration_infos: [],
       message: '',
       authenticationCode: '',
+      baseUrl: 'http://8.148.13.44:9000',
 
       totalPages: 1,
       currentPage: 1,
@@ -169,8 +170,11 @@ export default {
     this.port = localStorage.getItem('port');
 
     $.ajax({
-      url: "/api/declaration/getinfos/byUsername/",
-      type: "get",
+      url: "/api/declaration/getinfos/byUsername/", 
+      data: {
+          username: localStorage.getItem('username'),
+      },
+      type: "post",
       success: resp => {
           if(resp.result === 'success') {
             this.declaration_infos = resp.declarationInfos;
@@ -196,6 +200,7 @@ export default {
   methods: {
     handleDeclarationDelete(id) {
       console.log(id);
+      
       $.ajax({
         url: "/api/declaration/delete/",
         type: "post",
@@ -254,6 +259,7 @@ export default {
     },
     handleDeclarationEdit(id, state) {
       console.log(id);
+     
       $.ajax({
         url: "/api/declaration/edit/",
         type: "post",

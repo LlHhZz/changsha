@@ -27,6 +27,7 @@ export default{
             username: '',
             declaration_infos: [],
             message: '',
+            baseUrl: 'http://8.148.13.44:9000',
            
             use_list: [],
         };

@@ -1,6 +1,6 @@
 <template>
   <!-- <ContentBase> -->
-  <div class="row">
+  <div class="row" style="margin: 0;">
     <div class="col-1">
       <!--
         <OffCanvas></OffCanvas>
@@ -31,7 +31,7 @@
       </div>
       <div class="row">
         <div class="panel">
-            <h2>电能量和调频收益</h2>
+            <h2>各类型出力单元收益对比</h2>
             <div class="chart">
               <ElectricalEnergyAndFMGainsOnHour></ElectricalEnergyAndFMGainsOnHour>
             </div>

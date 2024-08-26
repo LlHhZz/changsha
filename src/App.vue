@@ -58,5 +58,31 @@ export default {
 </script>
 
 <style>
-/* 你可以在这里添加样式 */
+/* 隐藏垂直滚动条 */
+body::-webkit-scrollbar {
+    width: 0em;
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: transparent;
+}
+
+/* 隐藏水平滚动条 */
+/*
+body::-webkit-scrollbar-horizontal {
+    height: 0em;
+}
+
+body::-webkit-scrollbar-track-horizontal {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb-horizontal {
+    background: transparent;
+}
+*/
 </style>

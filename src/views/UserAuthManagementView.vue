@@ -150,6 +150,7 @@ export default {
       message: '',
       authenticationCode: '',
       searchUsername: '',
+      baseUrl: 'http://8.148.13.44:9000',
 
       totalPages: 1,
       currentPage: 1,
@@ -207,6 +208,7 @@ export default {
       return value.substring(0, length) + '...';
     },
     handleAuthEdit(id, username, state) {
+
       console.log(id);
       $.ajax({
         url: "/api/auth/editinfos/",

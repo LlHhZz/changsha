@@ -63,14 +63,18 @@ export default{
         
         let myChart = echarts.init(this.$refs.myChart)
         // 设置数据
+        // let data = [
+        //     {value: 2572975.876, name: "市场收入"},
+        //     {value: 2243473.567, name: "火电支出"},
+        //     {value: 26360.18476, name: "储能支出"},
+        //     {value: 303142.1251, name: "市场盈余"},
+        // ]
         let data = [
-            {value: 2572975.876, name: "市场收入"},
-            {value: 2243473.567, name: "火电支出"},
-            {value: 26360.18476, name: "储能支出"},
-            {value: 303142.1251, name: "市场盈余"},
+            {value: 77.60122245672903, name: "储能支出"},
+            {value: 1314.6312524267187, name: "光电收入"}
         ]
         let option2 = {
-            color: ["#3e5fff", "#4591ff", "#4ab7f0", "#a0ddbd"],
+            color: ["#a0ddbd", "#3e5fff", "#4ab7f0", "#4591ff"],
             title: {
                 // text: '收益统计',
                 left: 'left',

@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row" style="margin: 0;">
         <div class="col-1">
             <!--
                 <OffCanvas></OffCanvas>

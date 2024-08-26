@@ -8,7 +8,8 @@ body {
     border: 1px solid rgba(25, 186, 139, 0.15);
     background: url(../assets/images/line\(1\).png) rgba(255, 255, 255, 0.04);
     padding: 0 10px 10px;
-    margin-bottom: 8px;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
     &::before{
         position: absolute;
         top: 0;

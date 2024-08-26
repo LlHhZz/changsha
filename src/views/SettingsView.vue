@@ -58,12 +58,14 @@ export default {
       password: '',
       port: '管理端',
       message: '',
+
+      baseUrl: 'http://8.148.13.44:9000',
     };
   },
   methods: {
     register() {
       localStorage.setItem('port', this.port);
-      
+
         $.ajax({
             url: "/api/register/",
             type: "POST",
