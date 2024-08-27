@@ -48,12 +48,55 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-    name: "DeclaredMerchantsTables",
     data() {
         return {
-            profit_pv: 1314.6312524267187,
-            profit_es: -77.60122245672903
+            profit_pv: 0,
+            profit_es: 0
+        }
+    },
+    mounted() { 
+        this.loadData();
+    },
+    methods: {
+        loadData() {
+            let outer = this;
+            axios.post("http://8.148.13.44:9000/api/data/getinfos/byUsername/" , {
+                'username': localStorage.getItem('username'),
+            }, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+            })
+            .then(function (response) {
+            if(response.data.result === 'success') {
+                let data = response.data
+                // console.log(data)
+                
+                outer.profit_es = data.profit_es[0];
+                outer.profit_pv = data.profit_pv[0];
+            } else {
+                // var toastEl2 = document.getElementById('liveToast');
+                // var toast2 = new Toast(toastEl2, {
+                //     autohide: true,
+                //     delay: 1000
+                // });
+                // this.message = response.data.result;
+                // toast2.show();
+            }
+            })
+            .catch(function (error) {
+                console.log(error)
+                // var toastEl3 = document.getElementById('liveToast');
+                // var toast3 = new Toast(toastEl3, {
+                //     autohide: true,
+                //     delay: 1000
+                // });
+                // this.message = error;
+                // toast3.show();
+            });
         }
     }
 }

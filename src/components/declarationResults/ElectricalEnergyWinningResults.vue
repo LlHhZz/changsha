@@ -10,7 +10,7 @@
                 <th scope="col">结束时间</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody v-if="P_dis.length">
             <tr>
                 <td>储能放电</td>
                 <td>{{P_dis[0]}}</td>
@@ -74,19 +74,58 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     data() {
         return {
             time: 24,
-            P_dis: [0.010, 0.700, 1.100, 0.620, 0.840, 0.790, 0.960, 0.590, 0.350, 0.010, 
-                0.010, 0.900, 0.540, 1.000, 1.090, 0.900, 0.590, 0.670, 0.850, 0.660, 
-                0.680, 0.770, 0.660, 1.030, 1.080, 0.710, 1.010, 0.420, 1.120, 1.270, 0.730],
-            P_pv: [0.950, 0.700, 0.850, 0.710, 0.740, 0.870, 0.770, 0.750, 0.400, 0.010, 
-                    0.010, 0.910, 0.780, 0.720, 0.960, 0.710, 0.770, 0.740, 0.760, 0.750, 
-                    0.760, 0.810, 0.720, 0.940, 0.730, 0.790, 0.750, 0.870, 0.740, 0.750, 0.740]
+            P_dis: [],
+            P_pv: []
         };
     },
-    name: "DeclaredMerchantsTables",
+    mounted() { 
+        this.loadData();
+    },
+    methods: {
+        loadData() {
+            let outer = this;
+            axios.post("http://8.148.13.44:9000/api/data/getinfos/byUsername/" , {
+                'username': localStorage.getItem('username'),
+            }, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+            })
+            .then(function (response) {
+            if(response.data.result === 'success') {
+                let data = response.data
+                // console.log(data)
+
+                outer.P_dis = data.P_dis.map(value  => value .toFixed(8));
+                outer.P_pv = data.P_pv.map(value => value.toFixed(8));
+            } else {
+                // var toastEl2 = document.getElementById('liveToast');
+                // var toast2 = new Toast(toastEl2, {
+                //     autohide: true,
+                //     delay: 1000
+                // });
+                // this.message = response.data.result;
+                // toast2.show();
+            }
+            })
+            .catch(function (error) {
+                console.log(error)
+                // var toastEl3 = document.getElementById('liveToast');
+                // var toast3 = new Toast(toastEl3, {
+                //     autohide: true,
+                //     delay: 1000
+                // });
+                // this.message = error;
+                // toast3.show();
+            });
+        }
+    }
 }
 </script>
 

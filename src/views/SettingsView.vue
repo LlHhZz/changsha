@@ -67,7 +67,7 @@ export default {
       localStorage.setItem('port', this.port);
 
         $.ajax({
-            url: "/api/register/",
+            url: "http://8.148.13.44:9000/api/register/",
             type: "POST",
             contentType: "application/x-www-form-urlencoded",
             data: {

@@ -1,4 +1,13 @@
 <template>
+  <!-- Toast容器 -->
+  <div class="position-fixed p-3" style="z-index: 5; left: 72vw; top: 8vh;">
+    <div id="liveToast1" class="toast toast-custom" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="mr-auto">{{message}}</strong>
+      </div>
+    </div>
+  </div>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
   <div v-if="navBarControl.position === ''">
     <router-link class="navbar-brand" :to="{name: 'login'}" style="color: white; margin-left: 41.5vw;">电动汽车效益评估功能软件模块</router-link>
@@ -10,8 +19,16 @@
     <span>&nbsp;&nbsp;&nbsp;</span>
     <router-link class="nav-link" style="color: white;" :to="{name: 'declarationResults', params: {}}">出清结果</router-link>
     <span>&nbsp;&nbsp;&nbsp;</span>
-    <router-link class="nav-link" style="color: white; margin-right: 22%;" :to="{name: 'declarationAnalyse', params: {}}">结果评估</router-link>
+    <router-link class="nav-link" style="color: white;" :to="{name: 'declarationAnalyse', params: {}}">结果评估</router-link>
+    <span>&nbsp;&nbsp;&nbsp;</span>
+
+    <input type="file" ref="fileInput" style="display: none;" @change="handleFileUpload"/>
+    <label for="fileInput" @click="triggerFileInput" style="margin-right: 20%;">
+      <svg t="1724729007018" class="icon" viewBox="0 0 1084 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10148" width="24" height="24"><path d="M1063.153 721.619L907.505 411.106a42.827 42.827 0 0 0-34.846-21.564H743.695c-13.312 0-24.094 10.782-24.154 24.094v40.96c0 13.161 10.842 24.004 24.154 24.004l41.05 0.09c13.162 0 28.913 9.758 34.786 21.685l110.291 222.418c5.873 11.867-0.18 21.535-13.402 21.535H741.135a24.154 24.154 0 0 0-24.094 24.094v125.982c0 13.252-10.842 24.094-24.124 24.094H389.33a24.154 24.154 0 0 1-24.034-24.004V768.331a24.154 24.154 0 0 0-24.154-24.003H162.485c-13.252 0-19.125-9.668-13.011-21.444l115.32-223.202a43.52 43.52 0 0 1 35.148-21.384h39.966c13.252 0 24.094-10.842 24.094-24.003v-40.569c0-13.252-10.842-24.094-24.094-24.094H211.426a42.883 42.883 0 0 0-34.937 21.534L20.18 721.86c-3.675 7.108-7.138 14.276-10.481 21.534 0.18 0 0.301 10.842 0.301 24.094v218.714c0 13.252 10.842 24.094 24.185 24.094h1016.23c13.341 0 24.184-10.842 24.184-24.033V767.247c0-13.312-0.181-24.094-0.302-24.094-0.18 0.09-5.21-9.668-11.083-21.504zM453.572 282.624v370.929h177.393V282.684h139.384c13.312 0 16.956-8.132 8.132-18.07L558.773 17.077a20.6 20.6 0 0 0-31.744 0.21L312.802 264.344c-8.674 10.089-4.88 18.281 8.373 18.281h132.427z" fill="#ffffff" p-id="10149"></path></svg>
+    </label>
+    
     <router-link class="navbar-brand" :to="{name: 'home'}" style="color: white; margin-right: 5%;">电动汽车效益评估功能软件模块</router-link>
+    
     <router-link class="nav-link" style="color: white;" :to="{name: 'declarationResults', params: {}}">长沙市出清结果</router-link>
     <span>&nbsp;&nbsp;&nbsp;</span>
     <router-link class="nav-link" style="color: white;" :to="{name: 'declarationAnalyse', params: {}}">长沙市结果评估</router-link>
@@ -53,7 +70,8 @@
     <router-link class="nav-link" style="color: white;" :to="{name: 'home', params: {}}">首页</router-link>
     <span>&nbsp;&nbsp;&nbsp;</span>
     <router-link class="nav-link" style="color: white;" :to="{name: 'declarationResults', params: {}}">出清结果</router-link>
-    <span style="margin-right: 26%;"></span>
+    <span>&nbsp;&nbsp;&nbsp;</span>
+    <svg t="1724729007018" style="margin-right: 26%;" class="icon" viewBox="0 0 1084 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10148" width="24" height="24"><path d="M1063.153 721.619L907.505 411.106a42.827 42.827 0 0 0-34.846-21.564H743.695c-13.312 0-24.094 10.782-24.154 24.094v40.96c0 13.161 10.842 24.004 24.154 24.004l41.05 0.09c13.162 0 28.913 9.758 34.786 21.685l110.291 222.418c5.873 11.867-0.18 21.535-13.402 21.535H741.135a24.154 24.154 0 0 0-24.094 24.094v125.982c0 13.252-10.842 24.094-24.124 24.094H389.33a24.154 24.154 0 0 1-24.034-24.004V768.331a24.154 24.154 0 0 0-24.154-24.003H162.485c-13.252 0-19.125-9.668-13.011-21.444l115.32-223.202a43.52 43.52 0 0 1 35.148-21.384h39.966c13.252 0 24.094-10.842 24.094-24.003v-40.569c0-13.252-10.842-24.094-24.094-24.094H211.426a42.883 42.883 0 0 0-34.937 21.534L20.18 721.86c-3.675 7.108-7.138 14.276-10.481 21.534 0.18 0 0.301 10.842 0.301 24.094v218.714c0 13.252 10.842 24.094 24.185 24.094h1016.23c13.341 0 24.184-10.842 24.184-24.033V767.247c0-13.312-0.181-24.094-0.302-24.094-0.18 0.09-5.21-9.668-11.083-21.504zM453.572 282.624v370.929h177.393V282.684h139.384c13.312 0 16.956-8.132 8.132-18.07L558.773 17.077a20.6 20.6 0 0 0-31.744 0.21L312.802 264.344c-8.674 10.089-4.88 18.281 8.373 18.281h132.427z" fill="#ffffff" p-id="10149"></path></svg>
     <router-link class="navbar-brand" :to="{name: 'home'}" style="color: white; margin-right: 30%;">电动汽车效益评估功能软件模块</router-link>
     
     <router-link class="nav-link" style="color: white;" :to="{name: 'declarationRecords', params: {}}">申报记录</router-link>
@@ -92,6 +110,8 @@
 import { useRouter } from 'vue-router';
 import { watch, computed } from "vue";
 import { useStore } from "vuex"
+import { Toast } from 'bootstrap';
+import axios from 'axios';
 
 export default {
   data() {
@@ -99,7 +119,51 @@ export default {
       name: '',
       value: '',
       port: '',
+      message: '',
     };
+  },
+  methods: {
+    triggerFileInput() {
+      this.$refs.fileInput.click();
+    },
+    handleFileUpload(event) {
+      const files = event.target.files;
+      if(files.length > 0) {
+        const file = files[0];
+        if (file.type === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+        // 文件类型正确，可以执行上传
+        this.uploadFile(file);
+      } else {
+        // 文件类型不正确，提示用户
+        alert('请上传符合要求的excel数据文件');
+      }
+      }
+    },
+    uploadFile(file) {
+      var toastEl = document.getElementById('liveToast1');
+      var toast = new Toast(toastEl, {
+        autohide: true,
+        delay: 800
+      });
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('username', localStorage.getItem('username'));
+      axios.post('http://8.148.13.44:9000/api/data/upload/', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }).then(response => {
+        console.log(response.data.result);
+        if(response.data.result == 'success') {
+          this.message = '数据上传成功';
+          toast.show();
+        }
+      }).catch(error => {
+        this.message = '数据上传失败，错误：' + error;
+        toast.show();
+      });
+    }
   },
   mounted() {
     this.name = localStorage.getItem('name');
@@ -136,5 +200,57 @@ nav {
 }
 .icon {
   cursor: pointer;
+}
+
+.toast-custom {
+  background-color: #abc8f4; /* 成功的背景色 */
+  color: white; /* 文本颜色 */
+  border-radius: 0.25rem; /* 圆角 */
+  border: none; /* 移除边框 */
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1); /* 添加阴影 */
+}
+
+.toast-custom .toast-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 水平居中 */
+  text-align: center; /* 垂直居中 */
+  padding: 2vh 3vh;
+  background-color: #00166d; /* 头部背景色 */
+  color: white; /* 头部文本颜色 */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* 头部下边框 */
+}
+
+.toast-custom .toast-body {
+  font-size: 1rem; /* 主体文本大小 */
+}
+
+/* 动画效果 */
+.toast.show {
+  opacity: 1;
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.toast:not(.show) {
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+/* 定义渐入渐出动画 */
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(20px); /* 可以添加一些垂直位移效果 */
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 应用动画到toast组件 */
+.toast-custom {
+  animation: fadeInOut 2s infinite; /* 动画持续时间，次数和是否无限循环 */
 }
 </style>

@@ -122,7 +122,7 @@ export default {
     handleDeclarationUpload() {
 
       $.ajax({
-        url: "/api/declaration/upload/",
+        url: "http://8.148.13.44:9000/api/declaration/upload/",
         type: "post",
         data: {
           username: localStorage.getItem('username'),
@@ -146,7 +146,7 @@ export default {
               this.message = '申报成功';
 
               $.ajax({
-                url: "/api/auth/getinfos/",
+                url: "http://8.148.13.44:9000/api/auth/getinfos/",
                 type: "get",
                 success: resp => {
                     if(resp.result === 'success') {

@@ -111,7 +111,7 @@ export default {
         this.username = localStorage.getItem('username');
 
         $.ajax({
-        url: "/api/declaration/getinfos/",
+        url: "http://8.148.13.44:9000/api/declaration/getinfos/",
         type: "get",
         success: resp => {
             if(resp.result === 'success') {
