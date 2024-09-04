@@ -133,7 +133,7 @@ export default {
       });
 
       $.ajax({
-        url: "http://8.148.13.44:9000/api/auth/getCodeByUsername/",
+        url: "/api/auth/getCodeByUsername/",
         type: "POST",
         data: {
           'username': this.username,
@@ -177,12 +177,12 @@ export default {
       }
       // 这里需要添加逻辑来将文件和用户名一起发送到后端
       // 你可以使用 axios 或其他 HTTP 客户端库来发送 POST 请求
-      // 假设后端接口是 'http://8.148.13.44:9000/api/upload/'
+      // 假设后端接口是 '/api/upload/'
       const formData = new FormData();
       formData.append('username', this.username);
       formData.append('file', this.file);
       
-      axios.post('http://8.148.13.44:9000/api/auth/upload/', formData, {
+      axios.post('/api/auth/upload/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

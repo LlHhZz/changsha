@@ -76,7 +76,7 @@ export default{
         //     {value: 1314.6312524267187, name: "光电收入"}
         // ]
 
-        axios.post("http://8.148.13.44:9000/api/data/getinfos/byUsername/" , {
+        axios.post("/api/data/getinfos/byUsername/" , {
             'username': localStorage.getItem('username'),
         }, {
         headers: {

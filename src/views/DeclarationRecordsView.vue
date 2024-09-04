@@ -170,7 +170,7 @@ export default {
     this.port = localStorage.getItem('port');
 
     $.ajax({
-      url: "http://8.148.13.44:9000/api/declaration/getinfos/byUsername/", 
+      url: "/api/declaration/getinfos/byUsername/", 
       data: {
           username: localStorage.getItem('username'),
       },
@@ -202,7 +202,7 @@ export default {
       console.log(id);
       
       $.ajax({
-        url: "http://8.148.13.44:9000/api/declaration/delete/",
+        url: "/api/declaration/delete/",
         type: "post",
         data: {
           id: id,
@@ -210,7 +210,7 @@ export default {
         success: resp => {
             if(resp.result === 'success') {
               $.ajax({
-                url: "http://8.148.13.44:9000/api/declaration/getinfos/byUsername/",
+                url: "/api/declaration/getinfos/byUsername/",
                 type: "get",
                 success: resp => {
                     if(resp.result === 'success') {
@@ -261,7 +261,7 @@ export default {
       console.log(id);
      
       $.ajax({
-        url: "http://8.148.13.44:9000/api/declaration/edit/",
+        url: "/api/declaration/edit/",
         type: "post",
         data: {
           id: id,
@@ -270,7 +270,7 @@ export default {
         success: resp => {
             if(resp.result === 'success') {
               $.ajax({
-                url: "http://8.148.13.44:9000/api/declaration/getinfos/",
+                url: "/api/declaration/getinfos/",
                 type: "get",
                 success: resp => {
                     if(resp.result === 'success') {

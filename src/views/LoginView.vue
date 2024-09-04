@@ -125,7 +125,7 @@ export default {
       const outer = this;
       if(this.port === '管理端') {
         $.ajax({
-          url: "http://8.148.13.44:9000/api/login/",
+          url: "/api/login/",
           type: "POST",
           // contentType: "application/x-www-form-urlencoded",
           data: {
@@ -178,7 +178,7 @@ export default {
         })
       } else {
         $.ajax({
-          url: "http://8.148.13.44:9000/api/login2/",
+          url: "/api/login2/",
           type: "POST",
           // contentType: "application/x-www-form-urlencoded",
           data: {
@@ -237,7 +237,7 @@ export default {
     localStorage.setItem('port', this.port);
     const vm = this; // 使用 vm 代替 outer，以避免混淆
 
-    const loginUrl = this.port === '管理端' ? "http://8.148.13.44:9000/api/login/" : "http://8.148.13.44:9000/api/login2/";
+    const loginUrl = this.port === '管理端' ? "/api/login/" : "/api/login2/";
 
     axios.post(loginUrl , {
       'username': this.username,

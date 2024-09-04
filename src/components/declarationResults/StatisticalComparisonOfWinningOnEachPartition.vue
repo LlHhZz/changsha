@@ -20,7 +20,7 @@ export default{
         //             0.010, 0.910, 0.780, 0.720, 0.960, 0.710, 0.770, 0.740, 0.760, 0.750, 
         //             0.760, 0.810, 0.720, 0.940, 0.730, 0.790, 0.750, 0.870, 0.740, 0.750, 0.740]
         
-        axios.post("http://8.148.13.44:9000/api/data/getinfos/byUsername/" , {
+        axios.post("/api/data/getinfos/byUsername/" , {
             'username': localStorage.getItem('username'),
         }, {
         headers: {

@@ -175,7 +175,7 @@ export default {
     this.port = localStorage.getItem('port');
 
     $.ajax({
-      url: "http://8.148.13.44:9000/api/auth/getinfos/",
+      url: "/api/auth/getinfos/",
       type: "get",
       success: resp => {
           if(resp.result === 'success') {
@@ -211,7 +211,7 @@ export default {
 
       console.log(id);
       $.ajax({
-        url: "http://8.148.13.44:9000/api/auth/editinfos/",
+        url: "/api/auth/editinfos/",
         type: "post",
         data: {
           id: id,
@@ -222,7 +222,7 @@ export default {
         success: resp => {
             if(resp.result === 'success') {
               $.ajax({
-                url: "http://8.148.13.44:9000/api/auth/getinfos/",
+                url: "/api/auth/getinfos/",
                 type: "get",
                 success: resp => {
                     if(resp.result === 'success') {
@@ -315,7 +315,7 @@ export default {
         this.handlePageChange(1);
 
         $.ajax({
-          url: "http://8.148.13.44:9000/api/auth/getinfos/",
+          url: "/api/auth/getinfos/",
           type: "get",
           success: resp => {
               if(resp.result === 'success') {
@@ -339,7 +339,7 @@ export default {
     },
     handleReset() {
       $.ajax({
-        url: "http://8.148.13.44:9000/api/auth/getinfos/",
+        url: "/api/auth/getinfos/",
         type: "get",
         success: resp => {
             if(resp.result === 'success') {

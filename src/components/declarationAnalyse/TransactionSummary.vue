@@ -63,7 +63,7 @@ export default {
     methods: {
         loadData() {
             let outer = this;
-            axios.post("http://8.148.13.44:9000/api/data/getinfos/byUsername/" , {
+            axios.post("/api/data/getinfos/byUsername/" , {
                 'username': localStorage.getItem('username'),
             }, {
             headers: {
